@@ -1,6 +1,6 @@
 ---
 title: TAVR vs. surgery - NHST gets it wrong (again)
-description: "Who counts?"
+description: "Making intelligent inferences"
 author:
   - name: Jay Brophy
     url: https://brophyj.github.io/

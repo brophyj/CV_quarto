@@ -11,7 +11,7 @@ tags: []
 categories: [Uncertainty, Probability distributions]
 image: preview-image.jpg
 citation: 
-  url: https://brophyj.github.io/posts/2024-09-14-my-blog-post/ 
+  url: https://brophyj.com/posts/2024-09-14-my-blog-post/ 
 date: 2024-09-29T14:39:55-05:00
 lastmod: 2024-09-29T14:39:55-05:00
 featured: true
@@ -65,7 +65,7 @@ options(scipen = 1, digits = 2) #set to two decimal
 ## Background
 
 I recently read an article entitled "One-Year Outcomes of Transseptal
-Mitral Valve in- Valve in Intermediate Surgical Risk Patients"[@MVIV]
+Mitral Valve in Valve in Intermediate Surgical Risk Patients"[@MVIV]
 [paper](https://www.ahajournals.org/doi/10.1161/CIRCINTERVENTIONS.123.013782).
 After examining 50 patients from 12 sites that underwent mitral
 valve-in-valve from 2018 to 2021 the authors concluded
@@ -331,7 +331,7 @@ dat2 %>%
                             "76-95%")) |> 
   ggplot(aes(x = q3, group = id, color=id)) +
   geom_bar(stat="count", width=0.7, fill="lightblue")+
-  guides(color = FALSE) +
+  guides(color = "none") +
   facet_wrap(~ q4, labeller = label_both, axes = "all_y") +
   xlab("Questions 3") +
   ylab("Counts") +

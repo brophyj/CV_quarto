@@ -531,8 +531,8 @@ draws %>%
   stat_halfeye(point_interval = mean_qi, .width = .95) +
   scale_fill_manual(values = c("gray85", "skyblue")) +
   scale_y_continuous(NULL, breaks = NULL) +
-  xlab("Mortality differece (Redo - MVIV)") +
-  labs(title = "Mortality difference (surgical redo - catheter MVIV)",
+  xlab("Mortality difference (MVIV - Redo)") +
+  labs(title = "Mortality difference (catheter MVIV - surgical redo)",
        subtitle = "Blue area = probability increased mortality with MVIV (23.5%)") +
   theme_ggdist() +
   theme(legend.position = "none")

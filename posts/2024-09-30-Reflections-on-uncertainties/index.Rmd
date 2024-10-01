@@ -476,7 +476,7 @@ ggplot(p_dat, aes(x, y, color = factor(l, levels = c(2,2.8)))) +
   theme_minimal()
 ```
 
-Clearly, if the expected death rate is higher the curves shift left
+Clearly, if the expected death rate is higher the curves shift right
 meaning the probability of observing 0 deaths will fall with increasing
 mortality rates, so\
 **The answer to Q2 is 5 - 9.9%**

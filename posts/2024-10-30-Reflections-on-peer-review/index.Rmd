@@ -11,7 +11,7 @@ tags: []
 categories: [Peer review, Transparency]
 image: preview-image.jpg
 citation: 
-  url: https://brophyj.com/posts/2024-10-05-my-blog-post/ 
+  url: https://brophyj.com/posts/2024-09-14-my-blog-post/ 
 date: 2024-10-05T14:39:55-05:00
 lastmod: 2024-10-05T14:39:55-05:00
 featured: true

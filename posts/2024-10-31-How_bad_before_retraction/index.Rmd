@@ -236,5 +236,5 @@ results
 
 
 ::: {style="color: red"}
-Now that I have vented, it is time to get back to more enjoyable weekend activities.
+Now that I have vented, it is time to get back to other activities.
 :::

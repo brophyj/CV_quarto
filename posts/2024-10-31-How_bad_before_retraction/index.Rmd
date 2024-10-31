@@ -1,6 +1,6 @@
 ---
 title: "Reflections on peer review - part 2"
-description: "How bad must it be before retraction?"
+description: "How bad must it be before retraction"
 author:
   - name: Jay Brophy
     url: https://brophyj.github.io/

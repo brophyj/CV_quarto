@@ -119,7 +119,7 @@ fig1a <- ggplot(data.frame(x = c(-13, 1)), aes(x = x)) +
         stat_function(fun = dnorm, args = list(mean(post_Ex_p_diff*100), sd(post_Ex_p_diff*100)),  colour = "orange", linewidth=2) +
         scale_x_continuous(name = "Primary outcome difference  (molnupiravir - placebo)") +
         scale_y_continuous(name = "Density") +
-        labs(title="MOVe-OUT PDF for primary outcome \n(death + hospitalizations)",
+        labs(title="MOVe-OUT PDF for primary outcome (death + hospitalizations)",
              subtitle = "Non-informative prior", caption="AUC = area under the curve\n     PDF = probability density function") +
         geom_vline(xintercept=mean(post_Ex_p_diff*100)) +
         annotate("text", label = "Black vertical line = mean outcome \n difference (6.7%) decreased with molnupiravir", x = -5.5, y = .16, color = "black") +
@@ -129,12 +129,11 @@ fig1a <- ggplot(data.frame(x = c(-13, 1)), aes(x = x)) +
         stat_function(fun = dnorm, args = list(mean(post_Ex_p_diff*100), sd(post_Ex_p_diff*100)), xlim = c(-13,-3), geom = "area", alpha = 0.2) +
         stat_function(fun = dnorm, args = list(mean(post_Ex_p_diff*100), sd(post_Ex_p_diff*100)), xlim = c(-3,1), geom = "area", alpha = 0.2, fill = "yellow") 
 
-ggsave("fig1a.png", width = 5, height = 5)
+fig1a
+# ggsave("fig1a.png")
 ```
 
-
-<img src="fig1a.png" alt="Alt text" style="height: 500px; width: auto;">
-
+![](fig1a.png)
 
 One of the main advantages of this approach is that it assists in differentiating between statistical and clinical significance. We are less interested in the probability that there are simply fewer events with molnupiravir and more interested in the probability that this difference exceeds some clinically meaningful threshold. Thus while there is a 99.9% probability of fewer events with molnupiravir, there is only a 95% probability that the benefit is as large as a 3% decrease in the combined death & hospitalization outcome. Again this speaks to the high probability of benefit with molnupiravir but there is less certainty as to the magnitude of any relevant clinical benefit.    
 <br>
@@ -145,13 +144,5 @@ One of the main advantages of this approach is that it assists in differentiatin
 7.**Cost** Given a 5 day treatment is expected to cost about $700 and that Merck has projected to produce 10 million courses of treatment in 2021, the cost of molnupiravir could reach several billion dollars, highlighting again the need for further studies to reduce the uncertainty regarding the magnitude of any benefits, of any risks, and the generalizability of the results.     
 <br>
 In conclusion from my perspective, although these initial trial results are very promising, it would seem prudent to request a confirmation study, ideally mainly in a North American population, before committing a large amount of resources to this drug. In most healthcare systems, resources are not a continually expanding commodity and a commitment to this drug will come with a reduction of resources elsewhere and hence the need to make maximally informed decisions.
-
-## Update 2/2025    
-
-[MOVe-OUT](https://www.ncbi.nlm.nih.gov/pubmed/34914868) was published in the NEJM \       
-\    
-\    
-Interestingly, later RCTs comparing molnupiravir tp placebo, [PANORAMIC](https://www.ncbi.nlm.nih.gov/pubmed/36566761)(n > 25000), [MOVe-AHEAD](https://www.ncbi.nlm.nih.gov/pubmed/37690669)(n > 1500), showed no benefit for their primary outcome measures!
-
 
 

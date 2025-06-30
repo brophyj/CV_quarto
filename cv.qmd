@@ -20,13 +20,13 @@ editor: visual
 
 ### Contact info: [Personal website](https://www.brophyj.com/)
 
-<br>
+<br> 
 
-<a href="https://twitter.com/brophyj" style="color: blue;"><i class="fab fa-twitter fa-2x"></i> @brophyj</a>\
-<a href="https://github.com/brophyj"><i class="fab fa-github fa-2x"></i> brophyj</a>\
-<a href="https://www.linkedin.com/in/brophyj/"><i class="fab fa-linkedin fa-2x"></i> brophyj</a>\
-<a href="https://orcid.org/0000-0001-8049-6875"><i class="fab fa-orcid fa-2x"></i> brophyj</a>\
-<a href="mailto:james.brophy@mcgill.ca"><i class="fas fa-envelope fa-2x"></i> james.brophy\@mcgill.ca</a>
+<a href="https://twitter.com/brophyj" style="color: blue;"><i class="fab fa-twitter fa-2x"></i> @brophyj</a>  
+<a href="https://github.com/brophyj"><i class="fab fa-github fa-2x"></i> brophyj</a>  
+<a href="https://www.linkedin.com/in/brophyj/"><i class="fab fa-linkedin fa-2x"></i> brophyj</a>  
+<a href="https://orcid.org/0000-0001-8049-6875"><i class="fab fa-orcid fa-2x"></i> brophyj</a>  
+<a href="mailto:james.brophy@mcgill.ca"><i class="fas fa-envelope fa-2x"></i> james.brophy@mcgill.ca</a>
 
 ::: {style="color: red"}
 ### Education

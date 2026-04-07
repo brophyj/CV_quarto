@@ -1,0 +1,175 @@
+---
+title: "James (Jay) Brophy"
+format: html
+editor: visual
+---
+
+## Curriculum Vitae `r Sys.Date()`
+
+**Professor of Medicine — Epidemiology, Biostatistics and Occupational Health**
+
+### [McGill University](https://www.mcgill.ca/)
+
+::: column-margin
+![](images/brophy.png)
+:::
+
+### Contact info: [Personal website](https://www.brophyj.com/)
+
+<i class="fa-brands fa-twitter fa-lg"></i> [\@brophyj](https://twitter.com/brophyj) &ensp;
+<i class="fa-brands fa-github fa-lg"></i> [brophyj](https://github.com/brophyj) &ensp;
+<i class="fa-brands fa-linkedin fa-lg"></i> [brophyj](https://www.linkedin.com/in/brophyj/) &ensp;
+<i class="fa-brands fa-orcid fa-lg"></i> [brophyj](https://orcid.org/0000-0001-8049-6875) &ensp;
+<i class="fa-brands fa-bluesky fa-lg"></i> [brophyj](https://bsky.app/profile/brophyj.bsky.social) &ensp;
+<i class="fa-solid fa-envelope fa-lg"></i> [james.brophy\@mcgill.ca](mailto:james.brophy@mcgill.ca)
+
+### Education
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+options(tinytex.verbose = TRUE)
+
+# ref https://github.com/ropenscilabs/vitae
+library(tidyverse)
+library(RefManageR)
+library(vitae) # devtools::install_github("ropenscilabs/vitae")
+library(knitr)
+library(rorcid)
+# ORCID_TOKEN should be set in your .Renviron file, not hardcoded here
+```
+
+```{r education, echo=FALSE}
+library(rorcid)
+library(vitae)
+library(gt)
+
+edu <- do.call("bind_rows",
+  rorcid::orcid_educations("0000-0001-8049-6875")$`0000-0001-8049-6875`$`affiliation-group`$summaries
+)
+edu$`education-summary.organization.address.region`[2] <- "QC"
+edu$loc <- paste0(c(edu$`education-summary.organization.address.city`), " ",c(edu$`education-summary.organization.address.region`))
+
+edu1 <- edu %>%
+  rename( Degree = "education-summary.role-title", Institution = "education-summary.organization.name", Department = "education-summary.department-name", Location = "loc") %>%
+  select("Degree", "Institution", "Department", "Location")
+edu1[3,3] <- "Medicine"
+edu1[4,3] <- "Chemical engineering"
+
+gt(edu1) 
+
+```
+
+## Awards
+
+```{r, awards, echo=FALSE}
+
+awards <- data.frame(Award = c("Fellow Canadian Academy of Health Sciences",  
+  "Fellow Canadian Cardiovascular Society"), Date = c("Sept 2018","May 2017")) 
+
+gt(awards)
+```
+
+## Selected Research Funding
+
+```{r funding, echo=FALSE}
+funding <- data.frame(Title = c("Appui à la recherche en évaluation des technologies et des pratiques de pointe dans les CHU (Health Technology and Evidence Based Medicine)",  "Ticagrelor compared to clopidogrel in acute coronary syndromes - the TC4 comparative effectiveness study", "Evaluating the Trajectory of Aortic Stenosis (AS) in Quebec patients - Diagnosis, Treatments, and Outcomes", "The S. aureus Network Adaptive Platform Trial (SNAP) Canada: A Randomized Controlled Trial for Penicillin-susceptible, Methicillin-susceptible, and Methicillin resistant Staphylococcus aureus Bloodstream Infections in Hospitalized Patients", "Comparative Effectiveness of Long-acting Insulins and Neutral Protamine Hagedorn (NPH) Insulin for the Prevention of Micro- and Macrovascular Complications Among Patients with Type 1 Diabetes", "Assessing the interpretability of cardiovascular trials"), Agency = c("Fonds de Recherche Quebec Sante","Canadian Institutes of Health Research ", "Canadian Institutes of Health Research ", "Canadian Institutes of Health Research ", "Canadian Institutes of Health Research ", "Heart & Stroke Foundation"), Date = c("2018\u20132023","2019\u20132023", "2020\u20132023", "2021\u20132026", "2023\u20132026", "2025\u20132028"), Role = c("PI", "PI", "PI", "co-A", "co-A", "PI")) 
+
+funding <- funding[nrow(funding):1, ]
+
+gt(funding)
+```
+
+## Publications
+
+```{r echo=FALSE}
+profile <- scholar::get_profile("IXoZb4wAAAAJ")
+html1 <- profile$total_cites
+html2 <- profile$h_index
+```
+
+All publications (`r nrow(brophy <- scholar::get_publications("IXoZb4wAAAAJ") %>%      filter( !grepl('Response|reply|Renewed|Reply', title)))` on `r Sys.Date()`) as recorded in Google Scholar can be found [**here**](https://scholar.google.com/citations?user=IXoZb4wAAAAJ&hl=en)\
+Citations `r html1`, h-index `r html2`
+
+```{r fig.height=3}
+#plot over time from 2004-
+library(ggplot2)
+brophy <- scholar::get_publications("IXoZb4wAAAAJ") %>% 
+    filter( !grepl('Response|reply|Renewed|Reply', title))
+
+trend <- brophy %>%
+  filter(year > 2007 & year < as.integer(format(Sys.Date(), "%Y"))) %>%
+  group_by(year) %>%
+  summarise(n=n())
+ggplot(trend,aes(year,n)) +
+  geom_point() +
+  geom_line() +
+  # ggtitle("Publications according to Google Scholar") +
+    labs(subtitle=" Includes letters, editorials as well as original articles") +
+    ylab("Number of Publications") +
+    xlab("Year") +
+    scale_x_continuous(breaks = scales::pretty_breaks(n = 8)) +
+    theme_bw()
+
+```
+
+```{r helper, echo=FALSE}
+render_year_pubs <- function(year, scholar_id = "IXoZb4wAAAAJ", hlines_width = 20, overrides = NULL) {
+  brophy <- scholar::get_publications(scholar_id) %>% 
+    filter(year == !!year & !grepl('Response|reply|Renewed|Reply', title)) %>%
+    arrange(desc(year))
+  bb <- paste0(brophy$author, ". ", brophy$title, ". ", brophy$journal, ". ", brophy$number, ". ", brophy$year, ".")
+  bb <- as.data.frame(bb)
+  bb[[1]] <- gsub("\\bB JM\\b\\.*", "JM Brophy", bb[[1]])
+  if (!is.null(overrides)) {
+    for (i in seq_along(overrides)) {
+      bb[overrides[[i]]$row, 1] <- overrides[[i]]$text
+    }
+  }
+  gt(bb) %>% tab_options(column_labels.hidden = TRUE, table_body.hlines.width = hlines_width)
+}
+```
+
+::: panel-tabset
+#### 2025
+
+```{r, echo=FALSE}
+render_year_pubs(2025)
+```
+
+#### 2024
+
+```{r, echo=FALSE}
+render_year_pubs(2024, overrides = list(
+  list(row = 4, text = "JM Brophy Is science really self correcting? Something old and older. Medium (https://medium.com/@jbrophy115/is-science-really-self-correcting-64b829ec7935).")
+))
+```
+
+#### 2023
+
+```{r, echo=FALSE}
+render_year_pubs(2023)
+```
+
+#### 2022
+
+```{r, echo=FALSE}
+render_year_pubs(2022, hlines_width = 10)
+```
+
+#### 2021
+
+```{r, echo=FALSE}
+render_year_pubs(2021, hlines_width = 10)
+```
+
+#### Top citations (excluding guideline, multicentre RCTs)
+
+```{r top, echo=FALSE}
+brophy <- scholar::get_publications("IXoZb4wAAAAJ") %>%
+    arrange(desc(cites)) %>%
+    slice(4, 6, 7, 8, 9)
+
+bb <- paste0(brophy$author, ". ", brophy$title, ". ", brophy$journal, ". ", brophy$number, ". ", brophy$year, ". cites = ", brophy$cites)
+gt(as.data.frame(bb)) %>% tab_options(column_labels.hidden = TRUE, table_body.hlines.width = 10)
+```
+:::

@@ -37,6 +37,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 library(kableExtra)
 library(tidyverse)
+library(fragility)
 # data
 Ec<- 53 #outcome in non-expose 
 Nc<-377 #total in non-expose
@@ -76,7 +77,7 @@ While definitive conclusions are impossible without examining the complete data 
 <br>
 
 ```{r echo=FALSE, results=FALSE}
-library(fragility)
+
 frag.study(e0 = 53, n0 = 377, e1 = 28, n1 = 385)
 
 dat <- data.frame(exp=c(rep(0,377),rep(1,385)),
@@ -113,12 +114,12 @@ As a concrete example of the dangers of interim analyses, consider the randomize
 3.**Fragility index (FI) as a measure of trial robustness** The FI is the minimum number of patients who would have to change their event status to turn a statistically significant result to a non-significant result. For this data, the FI = 8. In other words, a reversal in statistical significance is achieved by inversing the status of 2 events in the placebo group and 6 non-events in the experimental group. This represents a change in status in only approximately 1% of the study sample. I don't think the complete loss of statistical significance by a reversal in outcomes in only 1% of the study population provides  the necessary alacrity for early approval.    
 <br>
 4.**Differentiating between statistical and clinical significance** While the p value gives the probability of observing this or more extreme data given the null hypothesis, it is most often of more interest to calaculate the inverse probability, namely the probability of a hypothesis given the data. This inverse probability moves inference into the realm of Bayesian statistics. The achilles heel of Bayesian is felt by some to be its requirement of a prior distribution. To minimize the impact of the prior, one can choose a non-informative one whereby the final (posterior) probability is determined uniquely by the observed data. The probability distribution function (PDF) for the difference between molnupiravir and placebo from MOVe-OUT using a non-informative prior is plotted below.    
-```{r echo=FALSE, fig.align='center', out.width="100%"}
+```{r echo=FALSE, fig.align='center'}
 fig1a <- ggplot(data.frame(x = c(-13, 1)), aes(x = x)) +
-        stat_function(fun = dnorm, args = list(mean(post_Ex_p_diff*100), sd(post_Ex_p_diff*100)),  colour = "orange", size=2) +
+        stat_function(fun = dnorm, args = list(mean(post_Ex_p_diff*100), sd(post_Ex_p_diff*100)),  colour = "orange", linewidth=2) +
         scale_x_continuous(name = "Primary outcome difference  (molnupiravir - placebo)") +
         scale_y_continuous(name = "Density") +
-        labs(title="MOVe-OUT PDF for primary outcome (death + hospitalizations)",
+        labs(title="MOVe-OUT PDF for primary outcome \n(death + hospitalizations)",
              subtitle = "Non-informative prior", caption="AUC = area under the curve\n     PDF = probability density function") +
         geom_vline(xintercept=mean(post_Ex_p_diff*100)) +
         annotate("text", label = "Black vertical line = mean outcome \n difference (6.7%) decreased with molnupiravir", x = -5.5, y = .16, color = "black") +
@@ -128,16 +129,29 @@ fig1a <- ggplot(data.frame(x = c(-13, 1)), aes(x = x)) +
         stat_function(fun = dnorm, args = list(mean(post_Ex_p_diff*100), sd(post_Ex_p_diff*100)), xlim = c(-13,-3), geom = "area", alpha = 0.2) +
         stat_function(fun = dnorm, args = list(mean(post_Ex_p_diff*100), sd(post_Ex_p_diff*100)), xlim = c(-3,1), geom = "area", alpha = 0.2, fill = "yellow") 
 
-fig1a
+ggsave("fig1a.png", width = 5, height = 5)
 ```
+
+
+<img src="fig1a.png" alt="Alt text" style="height: 500px; width: auto;">
+
+
 One of the main advantages of this approach is that it assists in differentiating between statistical and clinical significance. We are less interested in the probability that there are simply fewer events with molnupiravir and more interested in the probability that this difference exceeds some clinically meaningful threshold. Thus while there is a 99.9% probability of fewer events with molnupiravir, there is only a 95% probability that the benefit is as large as a 3% decrease in the combined death & hospitalization outcome. Again this speaks to the high probability of benefit with molnupiravir but there is less certainty as to the magnitude of any relevant clinical benefit.    
 <br>
 5.**Safety** There were no concerning safety signals noted from the MOVe-OUT trial but with only 775 patients there was  insufficient power to rule out potential side effects.    
 <br>
-6.**Generalizability** Recruitment in Latin America, Europe, and Africa accounted for 55%, 23% and 15% of the MOVe-OUT study population, respectively. This leaves at most 7% or approximately 50 patients randomized from North America centers. Are we certain that drug effects will not vary across these different populations with their varying ancillary treatments and health care systems? Perhaps there is no no between country variation but this is another point of uncertainty that still requires some resolution.        
+6.**Generalizability** Recruitment in Latin America, Europe, and Africa accounted for 55%, 23% and 15% of the MOVe-OUT study 2population, respectively. This leaves at most 7% or approximately 50 patients randomized from North America centers. Are we certain that drug effects will not vary across these different populations with their varying ancillary treatments and health care systems? Perhaps there is no no between country variation but this is another point of uncertainty that still requires some resolution.        
 <br>
 7.**Cost** Given a 5 day treatment is expected to cost about $700 and that Merck has projected to produce 10 million courses of treatment in 2021, the cost of molnupiravir could reach several billion dollars, highlighting again the need for further studies to reduce the uncertainty regarding the magnitude of any benefits, of any risks, and the generalizability of the results.     
 <br>
 In conclusion from my perspective, although these initial trial results are very promising, it would seem prudent to request a confirmation study, ideally mainly in a North American population, before committing a large amount of resources to this drug. In most healthcare systems, resources are not a continually expanding commodity and a commitment to this drug will come with a reduction of resources elsewhere and hence the need to make maximally informed decisions.
+
+## Update 2/2025    
+
+[MOVe-OUT](https://www.ncbi.nlm.nih.gov/pubmed/34914868) was published in the NEJM \       
+\    
+\    
+Interestingly, later RCTs comparing molnupiravir tp placebo, [PANORAMIC](https://www.ncbi.nlm.nih.gov/pubmed/36566761)(n > 25000), [MOVe-AHEAD](https://www.ncbi.nlm.nih.gov/pubmed/37690669)(n > 1500), showed no benefit for their primary outcome measures!
+
 
 

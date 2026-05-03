@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Jay Brophy">
-<meta name="description" content="It should be obvious but…">
-<title>Checklists vs.&nbsp;Critical Thinking – James (Jay) Brophy</title>
+
+
+<title>Bayesian (and frequentist) re-analyses of published RCTs – James (Jay) Brophy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,29 +20,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../images/logo.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1f7fd168c3a2bd1f3385ec7b3b313676.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-1f7fd168c3a2bd1f3385ec7b3b313676.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -67,25 +102,34 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="../../custom.scss">
-<meta property="og:title" content="Checklists vs.&nbsp;Critical Thinking – James (Jay) Brophy">
-<meta property="og:description" content="It should be obvious but…">
-<meta property="og:image" content="https://brophyj.com/posts/2025-04-03-Checlists/preview-image.jpg">
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<link rel="stylesheet" href="custom.scss">
+<meta property="og:title" content="Bayesian (and frequentist) re-analyses of published RCTs – James (Jay) Brophy">
+<meta property="og:description" content="Cardiologist, epidemiologist, and professor at McGill University">
+<meta property="og:image" content="https://brophyj.com/images/shiny1.jpg">
 <meta property="og:site_name" content="James (Jay) Brophy">
-<meta name="twitter:title" content="Checklists vs.&nbsp;Critical Thinking – James (Jay) Brophy">
-<meta name="twitter:description" content="It should be obvious but…">
-<meta name="twitter:image" content="https://brophyj.com/posts/2025-04-03-Checlists/preview-image.jpg">
+<meta property="og:image:alt" content="Static entry image">
+<meta name="twitter:title" content="Bayesian (and frequentist) re-analyses of published RCTs – James (Jay) Brophy">
+<meta name="twitter:description" content="Cardiologist, epidemiologist, and professor at McGill University">
+<meta name="twitter:image" content="https://brophyj.com/images/shiny1.jpg">
+<meta name="twitter:image:alt" content="Static entry image">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/logo.png" alt="" class="navbar-logo"></a>
-    <a class="navbar-brand" href="../../index.html">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">James (Jay) Brophy</span>
     </a>
   </div>
@@ -95,41 +139,41 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../cv.html"> 
+    <a class="nav-link" href="./cv.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../projects.html"> 
+    <a class="nav-link" href="./projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../apps.html"> 
+    <a class="nav-link active" href="./apps.html" aria-current="page"> 
 <span class="menu-text">Apps</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../talks.html"> 
+    <a class="nav-link" href="./talks.html"> 
 <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../publications.html"> 
+    <a class="nav-link" href="./publications.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../example.html"> 
+    <a class="nav-link" href="./example.html"> 
 <span class="menu-text">Art</span></a>
   </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
     <a class="nav-link" href="https://orcid.org/my-orcid?orcid=0000-0001-8049-6875"> 
 <span class="menu-text"><i class="fab fa-orcid"></i></span></a>
   </li>  
@@ -154,101 +198,104 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text"><i class="fa-brands fa-bluesky"></i></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Checklists vs.&nbsp;Critical Thinking</h1>
-                  <div>
-        <div class="description">
-          It should be obvious but…
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">Bias</div>
-                <div class="quarto-category">Critical thinking</div>
-              </div>
-                  </div>
-  </div>
-    
-  <div class="quarto-title-meta-author column-page">
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-heading">Affiliation</div>
-    
-      <div class="quarto-title-meta-contents">
-      <p class="author"><a href="https://brophyj.github.io/">Jay Brophy</a> <a href="https://orcid.org/0000-0001-8049-6875" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-    </div>
-    <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              <a href="https://mcgill.ca">
-              McGill University Dept Medince, Epidemiology &amp; Biostatistics
-              </a>
-            </p>
-        </div>
-    </div>
-
-  <div class="quarto-title-meta column-page">
-
-        
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">Thursday, the 3rd of April, 2025</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content"><section id="checklists" class="level2"><h2 class="anchored" data-anchor-id="checklists">Checklists</h2>
-<p>Checklists are appropriate for certain routine activities, but their usefulness diminishes for practices that require a deep understandings of complex situations involving ambiguities and uncertainties. Why am I thinking of checklists?&nbsp;<br>
-Recently in collaboration with a colleague, we examined the effect of extended thrombolysis for stroke patients with a late hospital presentation. We submitted our manuscript to BMJ Open.</p>
-<p><a href="images/stroke/s1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/stroke/s1.png" class="img-fluid"></a></p>
-</section><section id="the-abstract" class="level2"><h2 class="anchored" data-anchor-id="the-abstract">The abstract</h2>
-<p><a href="images/stroke/s2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/stroke/s2.png" class="img-fluid"></a></p>
-<p><a href="images/stroke/s3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/stroke/s3.png" class="img-fluid"></a></p>
-<p><a href="images/stroke/s4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/stroke/s4.png" class="img-fluid"></a></p>
-<p><a href="images/stroke/s5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/stroke/s5.png" class="img-fluid"></a></p>
-</section><section id="checklists-emails-and-how-not-to-get-published" class="level1 center"><h1 class="center">Checklists, emails and how not to get published</h1>
-<section id="checklists-1" class="level2"><h2 class="anchored" data-anchor-id="checklists-1">Checklists</h2>
-<p>I am obviously biased but I do think there are several scientific interesting findings in our study, not the least being that there have been 12 previous meta-analyses on this subject, although there have only been four original randomized trials. All 12 meta-analyses have reached the same conclusion, namely that extended thrombolysis is an effective therapy.&nbsp;<br>
-So a natural question, why do another meta-analysis? In fact, there are numerous reasons.&nbsp;<br>
-1. All previous RCTs and meta-analyses have not fully exploited the data. Stroke outcome has been collected on an ordinal scale, the modified Rankin scale, ranking from the degree of disability or dependency from 0 for no symptom to 6 for death. However all studies have dichtomized the data considering scores 0-1 to be a positive outcome and scores &gt; 1 being a negative outcome. The dichotomization results in a loss of information.&nbsp;<br>
-2. Existing publications have not considered weighting these scores by validated quality of life scores.&nbsp;<br>
-3. Previous studies have not distinguished between statistical and clinical significance&nbsp; 4. The probability of increased moratlity ahs not been examined in isolation.&nbsp;</p>
-</section><section id="checklists-and-emails" class="level2"><h2 class="anchored" data-anchor-id="checklists-and-emails">Checklists and emails</h2>
-<p>Our paper was “desk rejected” with the following email&nbsp;</p>
-<p>There is nothing unusual about getting a desk rejection, it comes with the territory, but the reasoning was incredibly lame a shown here.&nbsp;</p>
-<p><a href="images/stroke/s6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/stroke/s6.png" class="img-fluid"></a></p>
-<p>No consideration about the novelty or scientific merit of the manuscript, just an easy quick desk rejection because we didn’t follow a guideline of consulting multiple electronic database. No consideration that 12 previous meta-analyses had already done their due diligence checking multiple data sources and all had found only the same four RCTs that we analyzed. If the paper had been sent for peer review and the editor added as a minor comment the need to confirm to their standards by checking several electronic data sources, we would have gladly complied. But to be subject to a desk rejection for this trivial omission in this situation seems to border on the ludicrous.&nbsp;</p>
-</section><section id="checklists-more-emails-and-how-not-to-get-published" class="level2"><h2 class="anchored" data-anchor-id="checklists-more-emails-and-how-not-to-get-published">Checklists, more emails and how not to get published</h2>
-<p>After a couple of days reflecting, I decided to share my thoughts with BMJ Open and sent them the following email.&nbsp;</p>
-<p><img src="images/stroke/s7.png" class="img-fluid"><font size="3">I received a very nice acknowledgement informing me that my email would be forwarded to the Editor.</font></p>
-</section><section id="checklists-more-emails-and-how-not-to-get-published-1" class="level2"><h2 class="anchored" data-anchor-id="checklists-more-emails-and-how-not-to-get-published-1">Checklists, more emails and how not to get published</h2>
-<p>Of course, I didn’t expect to hear from the editor and haven’t been disappointed. After relaying this story in a seminar course that was discussing checklists and critical thinking, a student challenged me to follow-up with an additional email which follows&nbsp;</p>
-<p><a href="images/stroke/s8.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/stroke/s8.png" class="img-fluid"></a></p>
-<p><font size="5">I still have no reply to this email and the paper has been submitted to another journal. I do remain a bit saddened to realize that even editors of highly reputable journals seem all too ready to abandon critical thinking for the facility of anodyne checklists.</font></p>
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bayesian (and frequentist) re-analyses of published RCTs</h1>
+</div>
 
 
-</section></section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brophy2025,
-  author = {Brophy, Jay},
-  title = {Checklists Vs. {Critical} {Thinking}},
-  date = {2025-04-03},
-  url = {https://brophyj.com/posts/2024-12-30-my-blog-post/},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-brophy2025" class="csl-entry quarto-appendix-citeas" role="listitem">
-Brophy, Jay. 2025. <span>“Checklists Vs. Critical Thinking.”</span>
-April 3, 2025. <a href="https://brophyj.com/posts/2024-12-30-my-blog-post/">https://brophyj.com/posts/2024-12-30-my-blog-post/</a>.
-</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p class="page-banner">
+Interactive apps <iconify-icon icon="fluent-mdl2:diagnostic"></iconify-icon>
+</p>
+<p>These Shiny apps provide interactive Bayesian (and frequentist) re-analyses of published randomized controlled trials. They are part of the <a href="./projects.html#assessing-clinical-trial-interpretability">Assessing clinical trial interpretability</a> research project funded by Heart &amp; Stroke Canada.</p>
+<p>Enter the 2×2 event counts from any RCT, choose an effect measure (relative risk or risk difference), and explore how different prior assumptions shape posterior conclusions.</p>
+<p>Static entry image.</p>
+<section id="static-entry-image" class="level2">
+<h2 class="anchored" data-anchor-id="static-entry-image"><img src="images/shiny1.jpg" class="img-fluid" alt="Static entry image"></h2>
+</section>
+<section id="bayesian-rct-re-analysis-bayes-only" class="level1">
+<h1>Bayesian RCT Re-analysis (Bayes only)</h1>
+<p>A focused Bayesian app with four priors — <strong>Weak</strong>, <strong>Enthusiastic</strong>, <strong>Skeptical</strong>, and <strong>Empirical Bayes</strong> (van Zwet et al.&nbsp;2021/2025) — on either the relative risk (RR) or risk difference (RD) scale.</p>
+<p><strong>Features</strong></p>
+<ul>
+<li>Three likelihood options: Normal (analytic), Binomial (Laplace), MCMC (brms)</li>
+<li>RR and RD effect measures via tabbed prior panels (priors entered in natural units)</li>
+<li>MCID-aware posterior summaries, predictive distributions, and forest plots</li>
+<li>Prior vs Likelihood vs Posterior facet plots</li>
+<li>CSV export of all summaries</li>
+</ul>
+<p>Sample static output image.</p>
+<p><img src="images/shiny2.jpg" class="img-fluid" alt="Static output image"> <!-- Once deployed to shinyapps.io, replace with the live URL:
+[**Launch app**](https://brophyj.shinyapps.io/bayes_alone/){.btn .btn-primary}
+--></p>
+<p><a href="https://github.com/brophyj/shiny_light/blob/main/app_bayes_alone.r"><strong>Source code</strong></a> on GitHub</p>
+<hr>
+</section>
+<section id="full-bayesian-frequentist-re-analysis" class="level1">
+<h1>Full Bayesian + Frequentist Re-analysis</h1>
+<p>Everything in the Bayesian app, plus frequentist calibration metrics and an optional Design-informed prior.</p>
+<p><strong>Additional features</strong></p>
+<ul>
+<li>Greenland S-values (vs RR = 1 and vs RR = MCID)</li>
+<li>Gelman–Carlin Type-S and Type-M error analysis</li>
+<li>Per-prior posterior calibration table (Type-S, Type-M, coverage, replication probability)</li>
+<li>Empirical-Bayes mixture component decomposition (B<sub>k</sub>, B̄)</li>
+<li>Optional 5th Design-informed prior centred on the trial’s protocol target (RR mode)</li>
+</ul>
+<!-- Once deployed to shinyapps.io, replace with the live URL:
+[**Launch app**](https://brophyj.shinyapps.io/full/){.btn .btn-primary}
+-->
+<p><a href="https://github.com/brophyj/shiny_light/blob/main/app_full.r"><strong>Source code</strong></a> on GitHub</p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Running locally
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Clone the <a href="https://github.com/brophyj/shiny_light">shiny_light</a> repository and run either app in RStudio or from the command line:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">"app_bayes_alone.r"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">"app_full.r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Requires R ≥ 4.1 with <code>shiny</code>, <code>ggplot2</code>, <code>dplyr</code>, <code>ggdist</code>, <code>tibble</code>, <code>bslib</code>, and <code>rlang</code>. The MCMC backend additionally requires <code>brms</code> and <code>cmdstanr</code> (or <code>rstan</code>).</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -704,18 +751,20 @@ April 3, 2025. <a href="https://brophyj.com/posts/2024-12-30-my-blog-post/">http
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Powered by <a href="https://quarto.org">Quarto</a>.</p>
 </div>   
     <div class="nav-footer-center">
 <p>© 2026 Jay Brophy</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/brophyj/edit/main/posts/2025-04-03-Checlists/index.Rmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/brophyj/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/brophyj/edit/main/apps.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/brophyj/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
 </div>
   </div>
-</footer><script type="text/javascript">
+</footer>
+<script type="text/javascript">
 const dateElements = document.querySelectorAll("p.date, div.listing-date, div.listing-file-modified");
 dateElements.forEach((el) => {
   el.innerHTML = el.innerHTML.replace(
@@ -723,38 +772,9 @@ dateElements.forEach((el) => {
     "$1<sup style='font-size:0.5em;font-style:italic;'>$2</sup>"
   );
 });
-</script><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
+</script>
+
+
 
 
 </body></html>
